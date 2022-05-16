@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1066699351556",
+    "firebase_url": "https://serverless-eb56b-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "serverless-eb56b",
+    "storage_bucket": "serverless-eb56b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066699351556:android:3c2994f51ee3ce6ffeb751",
+        "android_client_info": {
+          "package_name": "com.example.serverless"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066699351556-008outl50jruocave8osi3lqu09b9qb6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByAqojxR-KtPnjqC3ZlmeQ7q2BFdOpsOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066699351556-008outl50jruocave8osi3lqu09b9qb6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
