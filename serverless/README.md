@@ -1,4 +1,4 @@
-# serverless
+# example
 
 A new Flutter project.
 
