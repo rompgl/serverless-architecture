@@ -147,7 +147,7 @@ class _RoomsPageState extends State<RoomsPage> {
           icon: const Icon(Icons.logout),
           onPressed: () {
             logout();
-            Navigator.of(context).push(
+            Navigator.of(context).pop(
               MaterialPageRoute(
                 builder: (context) => LoginPage(),
               ),
@@ -199,20 +199,17 @@ class _RoomsPageState extends State<RoomsPage> {
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
                     final user = snapshot.data![index];
-
-                    return GestureDetector(
-                      onTap: () {
-                        _handlePressed(user, context);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
+                    
+                    return Card(
+                      child: InkWell(
+                        splashColor: Colors.blue.withAlpha(30),
+                        onTap: () {
+                          _handlePressed(user, context);
+                        },
                         child: Row(
                           children: [
-                            _buildAvatarUser(user),
-                            Text(getUserName(user)),
+                            const Icon(Icons.people),
+                            Text(getUserName(user), style: const TextStyle(fontSize: 15)),
                           ],
                         ),
                       ),

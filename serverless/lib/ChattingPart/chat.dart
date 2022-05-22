@@ -11,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:developer';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -37,7 +38,7 @@ class _ChatPageState extends State<ChatPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                TextButton(
+                /*TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                     _handleImageSelection();
@@ -46,7 +47,7 @@ class _ChatPageState extends State<ChatPage> {
                     alignment: Alignment.centerLeft,
                     child: Text('Photo'),
                   ),
-                ),
+                ),*/
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -80,7 +81,9 @@ class _ChatPageState extends State<ChatPage> {
     if (result != null && result.files.single.bytes != null) {
       _setAttachmentUploading(true);
       final name = result.files.single.name;
+      
       final filePath = result.files.single.bytes!;
+
       //final file = File(filePath);
 
       try {
@@ -202,7 +205,7 @@ class _ChatPageState extends State<ChatPage> {
               return Chat(
                 isAttachmentUploading: _isAttachmentUploading,
                 messages: snapshot.data ?? [],
-                onAttachmentPressed: _handleAtachmentPressed,
+                onAttachmentPressed: _handleFileSelection,
                 onMessageTap: _handleMessageTap,
                 onPreviewDataFetched: _handlePreviewDataFetched,
                 onSendPressed: _handleSendPressed,
