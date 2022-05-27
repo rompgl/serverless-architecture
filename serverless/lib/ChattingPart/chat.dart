@@ -8,10 +8,9 @@ import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:developer';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({
@@ -74,6 +73,10 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _handleFileSelection() async {
+    /*HttpsCallable callable =
+        FirebaseFunctions.instance.httpsCallable('helloWorld');
+    await callable();*/
+
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
     );

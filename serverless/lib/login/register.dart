@@ -58,13 +58,15 @@ class _RegisterPageState extends State<RegisterPage> {
         email: _usernameController!.text,
         password: _passwordController!.text,
       );
+      var email = _usernameController!.text;
       var name = _usernameController!.text.split('@');
       await FirebaseChatCore.instance.createUserInFirestore(
         types.User(
           firstName: name[0],
           id: credential.user!.uid,
-          imageUrl: 'https://i.pravatar.cc/300?u=$_email',
+          imageUrl: 'https://i.pravatar.cc/300?u=$email',
           lastName: "",
+          role: types.Role.user,
         ),
       );
       Navigator.of(context)
