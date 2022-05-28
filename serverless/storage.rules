@@ -3,7 +3,7 @@ service firebase.storage {
   match /b/{bucket}/o {
     match /{allPaths=**} {
       allow read, write: if request.auth != null;
-      allow update, delete: if request.auth.uid == resource.data.author_uid;
+      allow update, delete: if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles == 'admin';
     }
   }
 }

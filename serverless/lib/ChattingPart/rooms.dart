@@ -168,21 +168,20 @@ class _RoomsPageState extends State<RoomsPage> {
 
     return Scaffold(
       appBar: AppBar(
-        /*actions: [
+        actions: [
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: _user == null
                 ? null
-                : () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        fullscreenDialog: true,
-                        builder: (context) => const UsersPage(),
-                      ),
-                    );
+                : () async {
+                    var collection = FirebaseFirestore.instance.collection('rooms');
+                    var snapshots = await collection.get();
+                    for (var doc in snapshots.docs) {
+                      await doc.reference.delete();
+                    }
                   },
           ),
-        ],*/
+        ],
         leading: IconButton(
           icon: const Icon(Icons.logout),
           onPressed: () {
@@ -191,7 +190,7 @@ class _RoomsPageState extends State<RoomsPage> {
               MaterialPageRoute(
                 builder: (context) => LoginPage(),
               ),
-            );
+            ); 
           },
         ),
         systemOverlayStyle: SystemUiOverlayStyle.light,
@@ -209,7 +208,8 @@ class _RoomsPageState extends State<RoomsPage> {
                   const Text('Not authenticated'),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
+                      logout();
+                      Navigator.of(context).pop(
                         MaterialPageRoute(
                           fullscreenDialog: true,
                           builder: (context) => const LoginPage(),

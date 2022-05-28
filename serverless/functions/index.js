@@ -18,13 +18,7 @@ exports.EventNewFile = functions.storage.object().onFinalize((object) => {
     " have been stored", {structuredData: true});
 });
 
-exports.EventNewMSG = functions.https.onRequest((request, response) => {
+exports.EventNewMSG = functions.https.onCall((request, response) => {
   functions.logger.info("a New mesage have been sent",
       {structuredData: true});
 });
-
-exports.simpleDbFunction = functions.database.ref("/rooms")
-    .onCreate((snap, context) => {
-      functions.logger.info("a New room have been created",
-          {structuredData: true});
-    });

@@ -1,6 +1,8 @@
 {
   "rules": {
     ".write": "auth.uid != null && auth.token.writer == true",
-    ".read": "auth.uid != null"
+    ".read": "auth.uid != null",
+    ".update": "if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles == 'admin'",
+    ".delete": "if request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles == 'admin'"
   }
 }
