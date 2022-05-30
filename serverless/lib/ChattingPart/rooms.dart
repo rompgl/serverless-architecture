@@ -26,10 +26,10 @@ class _RoomsPageState extends State<RoomsPage> {
   @override
   void initState() {
     initializeFlutterFire();
-    var email = FirebaseChatCore.instance.firebaseUser?.email;
-    if (email == "baptiste.nouailhac@gmail.com") userRole = "admin";
-    if (email == "baptiste.nouailhac@epitech.eu" ||
-        email == "romain.pigal@epitech.eu") userRole = "manager";
+    var id = FirebaseChatCore.instance.firebaseUser?.uid;
+    if (id == "6k2lusUTDxNVpzmJKmHSmqHspN72") userRole = "admin";
+    if (id == "EbfcewNPu3dc3LvBzL4y1lfhCfE2" ||
+        id == "FwsnAHEZnMf7AEibbJha") userRole = "manager";
     super.initState();
   }
 
@@ -169,18 +169,19 @@ class _RoomsPageState extends State<RoomsPage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: const Icon(Icons.add),
-            onPressed: _user == null
-                ? null
-                : () async {
-                    var collection = FirebaseFirestore.instance.collection('rooms');
-                    var snapshots = await collection.get();
-                    for (var doc in snapshots.docs) {
-                      await doc.reference.delete();
-                    }
-                  },
-          ),
+          if (checkAdmin(userRole))
+            IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: _user == null
+                  ? null
+                  : () async {
+                      var collection = FirebaseFirestore.instance.collection('rooms');
+                      var snapshots = await collection.get();
+                      for (var doc in snapshots.docs) {
+                        await doc.reference.delete();
+                      }
+                    },
+            ),
         ],
         leading: IconButton(
           icon: const Icon(Icons.logout),

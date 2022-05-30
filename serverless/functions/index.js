@@ -8,17 +8,16 @@ exports.EventNewUser = functions.auth.user().onCreate((user) => {
   " have been created", {structuredData: true});
 });
 
-exports.EventNewUser = functions.auth.user().onDelete((user) => {
-  functions.logger.info("the User: " + user.uid +
-    " have been deleted", {structuredData: true});
-});
-
 exports.EventNewFile = functions.storage.object().onFinalize((object) => {
   functions.logger.info("a new File: " + object.name +
     " have been stored", {structuredData: true});
 });
 
-exports.EventNewMSG = functions.https.onCall((request, response) => {
-  functions.logger.info("a New mesage have been sent",
-      {structuredData: true});
+exports.EventMSG = functions.https.onCall((request, response) => {
+  if (request.auth.uid == "l7JoCc5VAeTTXWlDgOMl" ||
+    request.auth.uid == "FwsnAHEZnMf7AEibbJha" ||
+    request.auth.uid == "6k2lusUTDxNVpzmJKmHSmqHspN72") {
+    functions.logger.info("a New mesage have been sent",
+        {structuredData: true});
+  }
 });

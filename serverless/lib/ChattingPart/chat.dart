@@ -73,9 +73,6 @@ class _ChatPageState extends State<ChatPage> {
   }
 
   void _handleFileSelection() async {
-    HttpsCallable callable =
-        FirebaseFunctions.instance.httpsCallable('EventNewMSG');
-    await callable();
 
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
@@ -152,6 +149,8 @@ class _ChatPageState extends State<ChatPage> {
       var localPath = message.uri;
 
       if (message.uri.startsWith('http')) {
+        HttpsCallable callable = FirebaseFunctions.instance.httpsCallable('EventMSG');
+        await callable();
         final client = http.Client();
         final request = await client.get(Uri.parse(message.uri));
         final bytes = request.bodyBytes;
