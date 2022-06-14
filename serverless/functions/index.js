@@ -19,15 +19,6 @@ exports.EventNewFile = functions.storage.object().onFinalize((object) => {
     " have been stored", {structuredData: true});
 });
 
-exports.EventMSG = functions.https.onCall((request, response) => {
-  if (request.auth.uid == "l7JoCc5VAeTTXWlDgOMl" ||
-    request.auth.uid == "FwsnAHEZnMf7AEibbJha" ||
-    request.auth.uid == "6k2lusUTDxNVpzmJKmHSmqHspN72") {
-    functions.logger.info("a New mesage have been sent",
-        {structuredData: true});
-  }
-});
-
 exports.initialData = functions.https.onRequest(async (request, response)=> {
   const writeAdmins = admin.firestore().collection("Admins").add({createdAt: date, firstName: "Baptiste", imageUrl: "https://i.pravatar.cc/300?u=baptiste.nouailhac@gmail.com", lastName: "Nouailhac", role: "admin"});
   const writeManager1 = admin.firestore().collection("Managers").add({createdAt: date, firstName: "Baptiste", imageUrl: "https://i.pravatar.cc/300?u=baptiste.nouailhac@epitech.eu", lastName: "Nouailhac", role: "manager"});
